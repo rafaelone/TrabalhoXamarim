@@ -12,14 +12,15 @@ namespace XF.LocalDB.Model
         public string Senha { get; set; }
     }
 
-    public class Usuariorepository
+    public class UsuarioRepository
     {
-        public Usuariorepository()
-        {
-        }
 
-        private static readonly Usuariorepository instance = new Usuariorepository();
-        public static Usuariorepository Instance
+        public UsuarioRepository() { }
+
+
+        private static readonly UsuarioRepository instance = new UsuarioRepository();
+
+        public static UsuarioRepository Instance
         {
             get
             {
@@ -27,23 +28,27 @@ namespace XF.LocalDB.Model
             }
         }
 
-        public static bool IsAutenticado(Usuario paramUsuario)
+        public static bool IsAutenticado(Usuario usuario)
         {
+
             XElement xmlUsuario = XElement.Parse(App.UsuarioVM.Stream);
+
             var usuarios = new List<Usuario>();
+
             foreach (var item in xmlUsuario.Elements("usuario"))
             {
-                Usuario usuario = new Usuario()
+                Usuario user = new Usuario()
                 {
-                    Nome = item.Element("username").Value,
-                    Senha = item.Element("senha").Value,
+                    Nome = item.Element("nome").Value,
+                    Senha = item.Element("password").Value,
                 };
-                usuarios.Add(usuario);
+                usuarios.Add(user);
             }
 
-            return usuarios.Any(user => user.Nome == paramUsuario.Nome &&
-            user.Senha == paramUsuario.Senha);
+            return usuarios.Any(user => user.Nome == usuario.Nome && user.Senha == usuario.Senha);
+
         }
+
     }
 
 }

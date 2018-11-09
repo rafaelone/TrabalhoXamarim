@@ -4,7 +4,7 @@
              x:Class="XF.LocalDB.View.Login">
     <ContentPage.Content>
         <StackLayout>
-            <Entry Placeholder="Usuario" Text="{Binding UsuarioModel.Nome}"/>
+            <Entry Placeholder="Nome" Text="{Binding UsuarioModel.Nome}"/>
             <Entry Placeholder="Senha" Text="{Binding UsuarioModel.Senha}"/>
             <Button Text="Entrar" Command="{Binding IsAutenticarCMD}" CommandParameter="{Binding UsuarioModel}"/>
         </StackLayout>

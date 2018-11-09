@@ -29,11 +29,11 @@ namespace XF.LocalDB.ViewModel
 
         public void IsAutenticar(Usuario paramUser)
         {
-            if (Usuariorepository.IsAutenticado(paramUser))
+            if (UsuarioRepository.IsAutenticado(paramUser))
             {
-                App.Current.MainPage.Navigation.PushAsync(new MainPage());
+                App.Current.MainPage.Navigation.PushAsync(new View.Aluno.MainPage());
             }
-            else
+           else
             {
                 App.Current.MainPage.DisplayAlert("Atenção", "Usuário não autorizado", "Ok");
             }
