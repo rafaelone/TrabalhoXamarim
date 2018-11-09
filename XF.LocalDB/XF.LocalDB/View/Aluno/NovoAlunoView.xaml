@@ -14,6 +14,7 @@
             <StackLayout Orientation="Horizontal">
                 <Button x:Name="btnSalvar" Text="Salvar" Clicked="OnSalvar"/>
                 <Button x:Name="btnCancelar" Text="Cancelar" Clicked="OnCancelar"/>
+                <Button x:Name="btnExcluir" Text="Excluir" IsVisible="False" Clicked="OnDeletar"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
