@@ -9,6 +9,8 @@ namespace XF.LocalDB.Model
     public class Usuario
     {
         public string Nome { get; set; }
+
+        public string Login { get; set; }
         public string Senha { get; set; }
     }
 
@@ -41,11 +43,12 @@ namespace XF.LocalDB.Model
                 {
                     Nome = item.Element("nome").Value,
                     Senha = item.Element("password").Value,
+                    Login = item.Element("username").Value
                 };
                 usuarios.Add(user);
             }
 
-            return usuarios.Any(user => user.Nome == usuario.Nome && user.Senha == usuario.Senha);
+            return usuarios.Any(user => user.Login == usuario.Login && user.Senha == usuario.Senha);
 
         }
 

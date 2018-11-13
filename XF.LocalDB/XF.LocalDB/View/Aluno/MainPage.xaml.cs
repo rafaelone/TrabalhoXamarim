@@ -10,16 +10,16 @@ using XF.LocalDB.ViewModel;
 
 namespace XF.LocalDB.View.Aluno
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MainPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MainPage : ContentPage
+    {
         AlunoViewModel vmAluno;
-		public MainPage ()
-		{
+        public MainPage()
+        {
             vmAluno = new AlunoViewModel();
             BindingContext = vmAluno;
-			InitializeComponent ();
-		}
+            InitializeComponent();
+        }
 
         protected override void OnAppearing()
         {
@@ -37,8 +37,22 @@ namespace XF.LocalDB.View.Aluno
         {
             var selecionado = args.Item as XF.LocalDB.Model.Aluno;
             Navigation.PushAsync(new NovoAlunoView()
-            {BindingContext=selecionado });
+            {
+                Aluno = selecionado,
+                BindingContext = selecionado
+            });
         }
 
+        private void OnSair(object sender, EventArgs args)
+        {
+            Navigation.PopAsync();
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+
+
+        }
     }
 }

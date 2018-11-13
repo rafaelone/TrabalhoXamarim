@@ -4,28 +4,29 @@
              NavigationPage.HasBackButton="False"
              Title="Lista de usuario"
              x:Class="XF.LocalDB.View.Aluno.MainPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Adicionar" Order="Secondary" Priority="1" Icon="" Activated="OnNovo" ></ToolbarItem>
+        <ToolbarItem Text="Sair" Order="Secondary"  Priority="1" Icon="" Activated="OnSair" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
+
         <StackLayout Padding="20">
-            <StackLayout Orientation="Horizontal"
-                         VerticalOptions="Center"
-                         HorizontalOptions="Center">
-                <Button x:Name="btnNovo" Text="Novo" Clicked="OnNovo"/>
-            </StackLayout>
-            <Label Text="Alunos" Font="18"/>
-            <ListView x:Name="lstAlunos" ItemsSource="{Binding Alunos}"
-                      ItemTapped="OnAlunoTapped" >
+            <Label Text="Alunos" Font="18" />
+
+            <ListView x:Name="lstAlunos" ItemsSource="{Binding Alunos}" ItemTapped="OnAlunoTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="5,0,5,0">
-                                <Label Text="{Binding Nome}" Font="14"/>
-                                <Label Text="{Binding Email}" Font="10"/>
+                                <Label Text="{Binding Nome}" Font="14" />
+                                <Label Text="{Binding Email}" Font="10" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-                      
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

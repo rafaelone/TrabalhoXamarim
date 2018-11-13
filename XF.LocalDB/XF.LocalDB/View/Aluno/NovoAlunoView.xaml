@@ -4,17 +4,17 @@
              x:Class="XF.LocalDB.View.Aluno.NovoAlunoView">
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <Entry x:Name="txtNome" Placeholder="Nome" Text="{Binding Nome}"/>
-            <Entry x:Name="txtRM" Placeholder="RM" Text="{Binding RM}"/>
-            <Entry x:Name="txtEmail" Placeholder="E-mail" Text="{Binding Email}"/>
+            <Entry x:Name="txtNome" Placeholder="Nome" Text="{Binding Nome}" />
+            <Entry x:Name="txtRM" Placeholder="RM" Text="{Binding RM}" />
+            <Entry x:Name="txtEmail" Placeholder="E-mail" Text="{Binding Email}" />
             <StackLayout Orientation="Horizontal">
-                <Label Text="Aprovado ?"/>
-                <Switch x:Name="IsAprovado" IsToggled="{Binding Aprovado}"/>
+                <Label Text="Aprovado?" />
+                <Switch x:Name="IsAprovado" IsToggled="{Binding Aprovado}"  />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Button x:Name="btnSalvar" Text="Salvar" Clicked="OnSalvar"/>
-                <Button x:Name="btnCancelar" Text="Cancelar" Clicked="OnCancelar"/>
-                <Button x:Name="btnExcluir" Text="Excluir" IsVisible="False" Clicked="OnDeletar"/>
+                <Button x:Name="btnSalvar" Text="Salvar" Clicked="OnSalvar" />
+                <Button x:Name="btnExcluir" Text="Excluir" Clicked="OnExcluir" />
+                <Button x:Name="btnCancelar" Text="Cancelar" Clicked="OnCancelar" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

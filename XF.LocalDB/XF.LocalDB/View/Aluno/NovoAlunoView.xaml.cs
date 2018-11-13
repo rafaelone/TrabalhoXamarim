@@ -14,7 +14,23 @@ namespace XF.LocalDB.View.Aluno
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NovoAlunoView : ContentPage
     {
-        private int alunoId = 0;
+        private XF.LocalDB.Model.Aluno aluno;
+
+        public XF.LocalDB.Model.Aluno Aluno
+        {
+            get { return aluno; }
+            set { aluno = value; }
+        }
+
+        protected override void OnAppearing()
+        {
+            btnExcluir.IsEnabled = true;
+            if (aluno == null)
+            {
+                btnExcluir.IsEnabled = false;
+            }
+
+        }
 
         public NovoAlunoView()
         {
@@ -22,44 +38,23 @@ namespace XF.LocalDB.View.Aluno
             InitializeComponent();
         }
 
-       
-
-
-
-        public NovoAlunoView(int Id)
-        {
-            InitializeComponent();
-            var aluno = App.AlunoModel.GetAluno(Id);
-            txtNome.Text = aluno.Nome;
-            txtRM.Text = aluno.RM;
-            txtEmail.Text = aluno.Email;
-            IsAprovado.IsToggled = aluno.Aprovado;
-            alunoId = aluno.Id;
-        }
-
-        protected override void OnAppearing()
-        {
-
-
-            btnExcluir.IsVisible = true;
-        }
-
 
 
         public void OnSalvar(object sender, EventArgs args)
         {
-            XF.LocalDB.Model.Aluno aluno = new XF.LocalDB.Model.Aluno()
-            
+            if (aluno == null)
             {
-                Nome = txtNome.Text,
-                RM = txtRM.Text,
-                Email = txtEmail.Text,
-                Aprovado = IsAprovado.IsToggled,
-                Id = alunoId
-            };
-            Limpar();
-         
-            
+                aluno = new XF.LocalDB.Model.Aluno()
+                {
+                    Nome = txtNome.Text,
+                    RM = txtRM.Text,
+                    Email = txtEmail.Text,
+                    Aprovado = IsAprovado.IsToggled,
+                    Id = 0
+                };
+                Limpar();
+            }
+
             App.AlunoModel.SalvarAluno(aluno);
             Navigation.PopAsync();
         }
@@ -71,9 +66,10 @@ namespace XF.LocalDB.View.Aluno
             Navigation.PopAsync();
         }
 
-        public void OnDeletar(object sender, EventArgs args)
+        public void OnExcluir(object sender, EventArgs args)
         {
-
+            App.AlunoModel.RemoverAluno(aluno.Id);
+            Navigation.PopAsync();
         }
 
         private void Limpar()
